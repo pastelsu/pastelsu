@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <a href="/">Back to Main</a>
+    <title>Scenario</title>
+    <style>
+        textarea::placeholder {
+            white-space: pre-line;
+        }
+        .synop {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: normal; /* 기본 줄바꿈 동작으로 설정 */
+            word-wrap: break-word; /* 긴 단어도 줄바꿈 되도록 설정 */
+            line-height:2;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+
+        }
+        .pre_text {
+            height: 500px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: normal; /* 기본 줄바꿈 동작으로 설정 */
+            word-wrap: break-word; /* 긴 단어도 줄바꿈 되도록 설정 */
+            line-height:2;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+
+        }
+        
+    </style>
+</head>
+<body>
+    {% if login_id %}
+    <p><p>
+    <form action="/scenario" method="post">
+        <input name="load_scenario" type="submit" value="Load Scenario">
+        <input name="scenario" type="submit" value="Writing Scenario">
+    </form> 
+    {% if synopsis_result %}
+    <h1>AI Synopsis</h1>
+    <div>
+        <p>
+        <pre class="synop">{{ synopsis_result }}</pre>
+    </div>
+    {% endif %}
+    {% if scenario_result %}
+    <h1>AI Scenario</h1>
+    <div>
+        <p>
+        <pre class="pre_text">{{ scenario_result | safe }}</pre>
+    </div>
+    {% endif %}
+    {% else %}
+        <h1>AI Scenario</h1>
+        <p><a href="/login">Login</a>
+        <p>
+    {% endif %}
+</body>
+</html>
+
+
+
+
+

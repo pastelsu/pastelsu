@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <a href="/">Back to Main</a>
+    <title>Keyword</title>
+    <style>
+        textarea::placeholder {
+            white-space: pre-line;
+        }
+        .synop_result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: normal; /* 기본 줄바꿈 동작으로 설정 */
+            word-wrap: break-word; /* 긴 단어도 줄바꿈 되도록 설정 */
+            line-height:2;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>AI Synopsis</h1>
+
+    {% if login_id %}
+        <p>Loggedin : {{ login_id }}
+        <p>
+        <p>Enter keywords for creating synopsis:</p>
+
+        <form action="/synopsis" method="post">
+            <textarea name="keywords" rows="4" cols="70" placeholder="EX: 형사, 조직보스, 형사와 조직보스의 팀웍, 살인마집단, 코믹, 액션"></textarea><br>
+            <input name="load_synop" type="submit" value="Load Synopsis">
+            <input name="synopsis" type="submit" value="Writing Synopsis">
+        </form>
+        {% if synopsis_result %}
+        <form action="/scenario" method="post">
+        <div>
+            <p>
+            <pre class="synop_result">{{ synopsis_result }}</pre>
+            <input name="load_scenario" type="submit" value="Load Scenario">
+            <input name="scenario" type="submit" value="Writing Scenario">
+        </div>
+        </form>
+        {% endif %}
+    {% else %}
+        <p><a href="/login">Login</a>
+        <p>
+    {% endif %}
+
+</body>
+</html>

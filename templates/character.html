@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <a href="/">Back to Main</a>
+    <title>character</title>
+    <style>
+        .pre_text {
+            height: 500px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: normal; /* 기본 줄바꿈 동작으로 설정 */
+            word-wrap: break-word; /* 긴 단어도 줄바꿈 되도록 설정 */
+            line-height:2;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+
+        }
+        
+    </style>
+</head>
+<body>
+    {% if login_id %}
+    <p><p>
+    <form action="/character" method="post"> 
+        <input name="load_scenario" type="submit" value="Load Scenario">
+    <p><p>
+    {% if scenario_result %}
+    <h1>Scenario</h1>
+    <div>
+        <p>
+        <pre class="pre_text">{{ scenario_result | safe }}</pre>
+    </div>
+    <input name="load_character" type="submit" value="Load Character">
+    <input name="character" type="submit" value="Analyze Character">
+    </form>
+    {% endif %}
+    <p><p>
+    {% if character_result %}
+    <h1>Character 분석</h1>
+    <div>
+        <p>
+        <pre class="pre_text">{{ character_result | safe }}</pre>
+    </div>
+    {% endif %}
+    {% else %}
+        <h1>Character 분석</h1>
+        <p><a href="/login">Login</a>
+        <p>
+    {% endif %}
+</body>
+</html>

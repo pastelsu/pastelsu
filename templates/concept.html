@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <a href="/">Back to Main</a>
+    <title>Concept</title>
+    <style>
+        textarea::placeholder {
+            white-space: pre-line;
+        }
+        .synop {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: normal; /* 기본 줄바꿈 동작으로 설정 */
+            word-wrap: break-word; /* 긴 단어도 줄바꿈 되도록 설정 */
+            line-height:2;
+        }
+        
+    </style>
+
+</head>
+<body>
+    {% if login_id %}
+    <form action="/concept" method="post">
+    <p><p>
+    <input name="load_synop" type="submit" value="Load Synop">
+    <input name="upload_synop" type="submit" value="Upload Synop">
+
+    {% if synop_result %}
+    <h1>Synopsis</h1>
+    <div>
+        <p>
+        <pre class="synop">{{ synop_result }}</pre>
+        <input name="drawing_concept" type="submit" value="Concept">
+        <input name="load_concept" type="submit" value="Load Concept">
+    </div>
+
+    {% endif %}
+    <h1>Concept Art</h1>
+    {% if concept_img %}       
+    <img src="{{ concept_img }}" alt="Image" height="700" ></img>
+    {% endif %}
+    </form>
+    {% else %}
+        <h1>Concept Art</h1>
+        <p><a href="/login">Login</a>
+        <p>
+    {% endif %}
+</body>
+</html>

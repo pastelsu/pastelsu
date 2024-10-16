@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <a href="/">Back to Main</a>
+    <title>PDF</title>
+</head>
+<body>
+    {% if login_id %}
+    <h1>PDF</h1>
+    <p>Upload PDF and Make SCENE list:</p>
+    <form action="/pdf" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".pdf">
+        <input type="submit" value="RUN">
+    </form>
+    {% if result %}
+    <h2>Result</h2>
+    <pre>{{ result }}</pre>
+    {% endif %}
+    {% else %}
+        <p><a href="/login">Login</a>
+        <p>
+    {% endif %}
+</body>
+</html>

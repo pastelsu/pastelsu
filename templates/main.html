@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+    {% if login_id %}
+        Logged in : {{ login_id }}</li>
+        <br><a href="/logout">Logout</a></li>
+    {% else %}
+        <p><a href="/login">Login</a></li>
+    {% endif %}
+    <p>
+    <ul>
+        <li><a href="/synopsis">Synopsis</a></li>
+        <li><a href="/scenario">Scenario</a></li>
+        <li><a href="/conti">Conti</a></li>
+        <li><a href="/character">Dev Character</a></li>
+        <li><a href="/concept">Concept Art</a></li>
+        <li><a href="/ppt">PPT</a></li>
+        <li><a href="/budget">Budgeting</a></li>
+        <li><a href="/schedule">Scheduling</a></li>
+    </ul>
+</body>
+</html>

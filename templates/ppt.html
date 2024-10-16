@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <a href="/">Back to Main</a>
+    <title>PPT</title>
+    <style>
+        .pre_text {
+            height: 500px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: normal; /* 기본 줄바꿈 동작으로 설정 */
+            word-wrap: break-word; /* 긴 단어도 줄바꿈 되도록 설정 */
+            line-height:2;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>PPT 제작</h1>
+    {% if login_id %}
+    <p><p>
+    <form action="/ppt" method="post" enctype="multipart/form-data"> 
+        <input name="load_scenario" type="submit" value="Load Scenario"><p>
+        <input name="select_file" type="file" value="Select File">
+        <input name="upload_scenario" type="submit" value="Upload File"><p>
+        <input name="download_ppt" type="submit" value="Write & Download PPT"> 
+    </form>
+    {% if uploaded %}
+    <div>
+    <p>Uploaded the scenario
+    </div>
+    {% endif %}
+    {% if download_ppt %}
+    <div>
+        <ul>
+            <li><a href="#">{{ download_ppt }}</a>
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if scenario_result %}
+    <p><p>
+    <div>
+        <p>
+        <pre class="pre_text">{{ scenario_result | safe }}</pre>
+    </div>
+    {% endif %}
+    {% else %}
+        <p><a href="/login">Login</a>
+        <p>
+    {% endif %}
+</body>
+</html>

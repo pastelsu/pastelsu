@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <a href="/">Back to Main</a>
+    <title>Budgeting</title>
+    <style>
+        .pre_text {
+            height: 500px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: normal; /* 기본 줄바꿈 동작으로 설정 */
+            word-wrap: break-word; /* 긴 단어도 줄바꿈 되도록 설정 */
+            line-height:2;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+        }
+        .table_text {
+            white-space: pre-wrap;
+            font-family: monospace;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ccc;
+            line-height: 2;
+            overflow: visible;
+            word-wrap: break-word;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    {% if login_id %}
+    <p><p>
+    <form action="/budget" method="post"> 
+        <input name="load_scenario" type="submit" value="Load Scenario">
+        <input name="budget" type="submit" value="Set Budget">
+        <input name="load_budget" type="submit" value="Load Budget">
+    </form>
+    <p><p>
+    {% if scenario_result %}
+    <h1>Scenario</h1>
+    <div>
+        <p>
+        <pre class="pre_text">{{ scenario_result | safe }}</pre>
+    </div>
+    {% endif %}
+    <p><p>
+    {% if budget_result %}
+    <h1>Budgeting</h1>
+    <div>
+        <p>
+        <pre class="table_text">{{ budget_result | safe }}</pre>
+    </div>
+    {% endif %}
+    {% else %}
+        <h1>Budgeting</h1>
+        <p><a href="/login">Login</a>
+        <p>
+    {% endif %}
+</body>
+</html>
